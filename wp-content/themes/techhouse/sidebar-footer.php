@@ -24,8 +24,8 @@
     <li>
         <h2><?php _e('Opening hours', 'techhouse') ?></h2>
         <ul class="open-hours">
-            <li><span><?php _e('Monday - Saturday', 'techhouse') ?>:</span><span>9:00 - 20:00</span></li>
-            <li><span><?php _e('Sunday', 'techhouse') ?>:</span><span>9:00 - 15:00</span></li>
+            <li><span><?php _e('Monday - Saturday', 'techhouse') ?> : </span><span>9:00 - 20:00</span></li>
+            <li><span><?php _e('Sunday', 'techhouse') ?> : </span><span>9:00 - 15:00</span></li>
         </ul>
     </li>
 </ul>
