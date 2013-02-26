@@ -52,6 +52,5 @@
             </div>
 		</div>
 	</div><!-- #header -->
-
 	<div id="main">
         <div class="inner <?php if (is_home()) : ?>home<?php endif ?>">

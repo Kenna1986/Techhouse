@@ -224,10 +224,7 @@
 .fck .aligncenter {
     clear: both;
     display: block;
-    margin-top: 12px;
-    margin-top: 0.857142857rem;
-    margin-bottom: 12px;
-    margin-bottom: 0.857142857rem;
+    margin : 12px auto;
 }
 
 

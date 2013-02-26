@@ -272,10 +272,11 @@ color: #666;
 .blogs li {border-bottom: 1px solid #ccc; overflow: hidden; padding-bottom: 10px;}
 .blogs li.last {border-bottom: none; padding-bottom: 0px;}
 .blogs li h2 {padding: 10px 0px}
-.blogs .description {font-size: 14px;}
+.blogs .description {font-size: 14px; line-height: 20px;}
 .blogs .description .thumbnail{float: left; padding-right: 5px;}
 
 .fck {font-size: 14px;}
 .navigation {height: 30px; padding: 15px 0 0 15px;}
 .single .navigation {padding-left: 30px;}
 span.cost {color: #0376C9;}
+.hidden {display: none !important;}

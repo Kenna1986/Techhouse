@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thegioi2hand\n"
 "POT-Creation-Date: 2012-11-17 21:38+0700\n"
-"PO-Revision-Date: 2013-02-24 20:14+0700\n"
+"PO-Revision-Date: 2013-02-26 22:04+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "Copyright © 2012 Techhouse. All rights reserved"
 
 # loop-product.php
 msgid "In Stock"
-msgstr "Còn hàn"
+msgstr "Còn hàng"
 
 # loop-product.php
 msgid "Buy Now"

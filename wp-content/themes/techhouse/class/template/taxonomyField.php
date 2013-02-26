@@ -59,7 +59,11 @@ jQuery(document).ready(function() {
             attachment.each(function(item) {
                 //console.log(that.parent());
                 //console.log(item);
-                thumbUrl = item.attributes.sizes.thumbnail.url;
+                if (typeof item.attributes.sizes.thumbnail != 'undefined') {
+                    thumbUrl = item.attributes.sizes.thumbnail.url;
+                } else {
+                	thumbUrl = item.attributes.sizes.full.url;
+                }
                 imageName = item.attributes.name;
                 imageId = item.id;
                 image = '<img src="' + thumbUrl + '" class="upload-image" alt="" />';

@@ -1,7 +1,7 @@
 <?php
 global $post;
 $productOptions = get_post_meta($post->ID, Product::OPTIONS_KEY, true);
-$prices = get_post_meta($post->ID, Product::PRICES_KEY, true);
+
 ?>
 
 <?php if (isset($productOptions['color'])) : ?>
@@ -12,8 +12,6 @@ $prices = get_post_meta($post->ID, Product::PRICES_KEY, true);
         <div class="desc"></div>
     </div>
 <?php endif ?>
-<?php if ($prices) : ?>
     <div class="choose choose-color">
-        <h4><?php _e('Price', 'techhouse') ?> : <?php echo formatPrice(getFinalPrice($prices)) ?></h4>
+        <h4><?php _e('Price', 'techhouse') ?> : <?php echo formatPrice(getFinalPrice($post->ID)) ?></h4>
     </div>
-<?php endif ?>

@@ -6,7 +6,7 @@
                 <div class="desc">
                     <h5><a href="<?php the_permalink() ?>" title="<?php the_title_attribute() ?>"><?php the_title() ?></a></h5>
                     <br />
-                    <?php echo formatPrice(getFinalPrice($prices)) ?>
+                    <?php echo formatPrice(getFinalPrice($post->ID)) ?>
                     <span><?php _e('In Stock', 'techhouse') ?></span>
                     <span class="btn-buy">
                         <a title="<?php _e('Buy Now', 'techhouse') ?>" href="<?php the_permalink() ?>"><?php _e('Buy Now', 'techhouse') ?></a>

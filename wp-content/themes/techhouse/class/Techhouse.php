@@ -7,8 +7,16 @@ function getProduct($args = array())
     return $product;
 }
 
-function getFinalPrice($prices)
+function countTaxonomy($taxonomy)
 {
+    global $wpdb;
+    $sql = "SELECT COUNT(*) as total FROM $wpdb->term_taxonomy WHERE `taxonomy` = '$taxonomy'";
+    return $wpdb->get_var($sql);
+}
+
+function getFinalPrice($postId)
+{
+    $prices = get_post_meta($postId, Product::PRICES_KEY, true);
     if (isset($prices['default'])) {
         return $prices['default'];
     }

@@ -1,20 +1,18 @@
 <?php
 global $post;
+$args = array(
+    'orderby' => 'term_id',
+    'order' => 'DESC',
+    'hide_empty' => false,
+    'number' => 3
+);
 switch ($post->post_type) {
     case 'product':
-        $args = array(
-            'orderby' => 'term_id',
-            'order' => 'DESC',
-        );
         $taxonomy = 'accessory-catalog';
         $collection = get_terms($taxonomy, $args);
         $title = __('Accessories', 'techhouse');
         break;
     default :
-        $args = array(
-            'orderby' => 'term_id',
-            'order' => 'DESC',
-        );
         $taxonomy = 'catalog';
         $collection = get_terms($taxonomy, $args);
         $title = __('Products', 'techhouse');
@@ -25,7 +23,7 @@ switch ($post->post_type) {
         <div class="slideshow">
             <h3><?php echo $title ?></h3>
             <div class="inner-slideshow">
-                <!-- <a class="previous" title="<?php _e('Previous') ?>" href="javascript:void(0)"><?php _e('Previous') ?></a> -->
+                <a class="previous hidden" title="<?php _e('Previous') ?>" href="javascript:void(0)"><?php _e('Previous') ?></a>
                 <div class="preview">
                     <ul>
                         <?php foreach ($collection as $row) : ?>
@@ -47,7 +45,7 @@ switch ($post->post_type) {
                         <?php endforeach ?>
                     </ul>
                 </div>
-                <!-- <a class="next" title="<?php _e('Next') ?>" href="javascript:void(0)"><?php _e('Next') ?></a> -->
+                <a class="next <?php //if (countTaxonomy($taxonomy) <= 3) : ?>hidden<?php //endif?>" title="<?php _e('Next') ?>" href="javascript:void(0)"><?php _e('Next') ?></a>
             </div>
         </div>
     </div>
