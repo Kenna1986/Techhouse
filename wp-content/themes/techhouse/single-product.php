@@ -4,11 +4,6 @@
 
 	<?php while (have_posts()) : the_post(); ?>
 
-        <?php
-            global $post;
-            $product = getProduct((array) $post);
-        ?>
-
 		<?php get_template_part('content', 'product') ?>
 
 		<?php //comments_template( '', true ); ?>

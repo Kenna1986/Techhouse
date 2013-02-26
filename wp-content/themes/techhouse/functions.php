@@ -1,5 +1,6 @@
 <?php
 require_once 'class/Techhouse.php';
+require_once 'class/TaxonomyCustomfields.php';
 class TechhouseTheme
 {
     public function __construct()
