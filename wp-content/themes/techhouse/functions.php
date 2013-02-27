@@ -1,6 +1,13 @@
 <?php
+/*
+ * Include class
+ */
 require_once 'class/Techhouse.php';
 require_once 'class/TaxonomyCustomfields.php';
+require_once 'class/Request.php';
+require_once 'class/Model.php';
+require_once 'class/Cart.php';
+
 class TechhouseTheme
 {
     public function __construct()
@@ -9,6 +16,15 @@ class TechhouseTheme
         add_action('wp_enqueue_scripts', array($this, 'loadStyles'));
         add_action('wp_enqueue_scripts', array($this, 'loadScripts'));
         add_action('widgets_init', array($this, 'widgetsInit'));
+        add_action('init', array($this, 'initSessionId'));
+    }
+
+    public function initSessionId()
+    {
+        if (!isset($_COOKIE['wp_cart_session_id']) || $_COOKIE['wp_cart_session_id'] == '') {
+            $key = $_SERVER['REMOTE_ADDR'] . $_SERVER['REQUEST_TIME'];
+            setcookie('wp_cart_session_id', md5($key));
+        }
     }
 
     public function loadStyles()
