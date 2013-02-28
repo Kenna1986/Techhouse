@@ -1,0 +1,17 @@
+# Begin custom url
+<IfModule mod_rewrite.c>
+RewriteRule ^checkout(.*) checkout\.php [L]
+</IfModule>
+# End custom url
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress

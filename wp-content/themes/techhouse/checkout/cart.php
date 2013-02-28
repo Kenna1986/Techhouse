@@ -7,9 +7,12 @@ switch ($actionRequest) {
         //print_r(Request::getParams());
         break;
     case 'add' :
-        $params = Request::getParams();
+        //$params = Request::getParams();
         $cart = new Cart();
-        echo $cart->getSessionId();
+        foreach ($cart->getAllItems() as $itemData) {
+            $item = new Quote_Item($itemData);
+            //print_r($item->getProduct()->getData());
+        }
         //Request::redirect('checkout/cart', array('id' => 2));
         break;
 }

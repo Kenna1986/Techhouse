@@ -7,6 +7,7 @@ require_once 'class/TaxonomyCustomfields.php';
 require_once 'class/Request.php';
 require_once 'class/Model.php';
 require_once 'class/Cart.php';
+require_once 'class/Quote_Item.php';
 
 class TechhouseTheme
 {
