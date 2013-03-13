@@ -48,4 +48,14 @@ switch ($post->post_type) {
                 <a class="next <?php //if (countTaxonomy($taxonomy) <= 3) : ?>hidden<?php //endif?>" title="<?php _e('Next') ?>" href="javascript:void(0)"><?php _e('Next') ?></a>
             </div>
         </div>
+        <div class="services-block">
+            <h3><?php _e('Services', 'techhouse') ?></h3>
+            <div class="inner-services">
+                <ul>
+                    <li class="services"><a title="<?php _e('Services', 'techhouse') ?>" href="#"><?php _e('Services', 'techhouse') ?></a></li>
+                    <li class="shipping"><a title="<?php _e('Shipping', 'techhouse') ?>" href="#"><?php _e('Shipping', 'techhouse') ?></a></li>
+                    <li class="warranty"><a title="<?php _e('Warranty', 'techhouse') ?>" href="#"><?php _e('Warranty', 'techhouse') ?></a></li>
+                </ul>
+            </div>
+        </div>
     </div>
