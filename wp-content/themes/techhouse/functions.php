@@ -2,6 +2,17 @@
 /*
  * Include class
  */
+function themeAutoload($class)
+{
+    // auto load class define for theme
+    $themeDir = get_template_directory();
+    $filePath = $themeDir . '/class/' . $class . '.php';
+    if (file_exists($filePath)) {
+        require_once $filePath;
+    }
+}
+spl_autoload_register('themeAutoload');
+
 require_once 'class/Techhouse.php';
 require_once 'class/TaxonomyCustomfields.php';
 require_once 'class/Request.php';
@@ -18,14 +29,6 @@ class TechhouseTheme
         add_action('wp_enqueue_scripts', array($this, 'loadScripts'));
         add_action('widgets_init', array($this, 'widgetsInit'));
         add_action('init', array($this, 'initSessionId'));
-    }
-
-    public function initSessionId()
-    {
-        if (!isset($_COOKIE['wp_cart_session_id']) || $_COOKIE['wp_cart_session_id'] == '') {
-            $key = $_SERVER['REMOTE_ADDR'] . $_SERVER['REQUEST_TIME'];
-            setcookie('wp_cart_session_id', md5($key));
-        }
     }
 
     public function loadStyles()
