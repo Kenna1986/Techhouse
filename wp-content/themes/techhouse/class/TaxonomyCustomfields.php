@@ -18,7 +18,7 @@ add_action('edited_term','tcfSaveValues');
 function tcfEditTaxonomy()
 {
     wp_enqueue_media();
-    include_once 'template/taxonomyField.php';
+    Techhouse::getTemplate('taxonomyField.php');
 }
 
 function tcfGetTaxonomyFieldValue($termId, $name = null)

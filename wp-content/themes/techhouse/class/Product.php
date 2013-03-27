@@ -1,5 +1,4 @@
 <?php
-require_once 'Varien_Object.php';
 class Product extends Varien_Object
 {
     const PRICES_KEY = 'product_prices';

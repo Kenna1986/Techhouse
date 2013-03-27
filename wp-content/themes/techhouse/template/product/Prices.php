@@ -1,7 +1,6 @@
 <?php
 global $post;
 $prices = get_post_meta($post->ID, Product::PRICES_KEY, true);
-
 $defaultPrice = isset($prices['default']) ? getFormatPrice($prices['default']) : '';
 ?>
 <div id="techhouse-product-price" class="form-item form-item-textfield wpcf-form-item wpcf-form-item-textfield">

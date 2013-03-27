@@ -8,9 +8,8 @@
             <ul>
                 <?php if (isset($productOptions['gallery']) && $productOptions['gallery']) :?>
                     <?php foreach ($productOptions['gallery'] as $item) : ?>
-                    <?php $image = wp_get_attachment_image($item, 'full') ?>
                     <li>
-                        <?php echo $image ?>
+                        <?php echo wp_get_attachment_image($item, 'full') ?>
                     </li>
                     <?php endforeach ?>
                 <?php endif ?>
@@ -21,11 +20,10 @@
                 <div class="preview">
                     <ul>
                     <?php if (isset($productOptions['gallery']) && $productOptions['gallery']) :?>
-                        <?php $count = 0?>
+                        <?php $count = 0 ?>
                         <?php foreach ($productOptions['gallery'] as $item) : $count++; ?>
-                        <?php $image = wp_get_attachment_image($item, 'product_gallery_thumb') ?>
                         <li<?php if ($count == 1) : ?> class="active"<?php endif ?>>
-                            <a href="javascript:void(0)"><?php echo $image ?></a>
+                            <a href="javascript:void(0)"><?php echo wp_get_attachment_image($item, 'product_gallery_thumb') ?></a>
                         </li>
                         <?php endforeach ?>
                     <?php endif ?>

@@ -2,16 +2,6 @@
 if (!class_exists('Request')) {
     class Request
     {
-        protected static $_baseUrl;
-
-        public static function getBaseUrl()
-        {
-            if (!self::$_baseUrl) {
-                self::$_baseUrl = get_bloginfo('url');
-            }
-            return self::$_baseUrl;
-        }
-
         public static function getParam($key, $default = null)
         {
             if (isset($_REQUEST[$key])) {
@@ -28,18 +18,20 @@ if (!class_exists('Request')) {
             return array();
         }
 
-        public static function redirect($path, $params = array(), $https = false)
+        public static function getPost($key, $default = null)
         {
-            //ob_clean();
-            $baseUrl = self::getBaseUrl();
-            //$url = $https ? 'https://' : 'http://';
-            $url = $baseUrl . '/' . $path;
-            if ($params) {
-                $params = http_build_query($params);
-                $url .= '?' . $params;
+            if (isset($_POST[$key])) {
+                return $_POST[$key];
             }
-            header('Location:' . $url);
-            ob_end_clean();
+            return $default;
+        }
+
+        public static function getPosts()
+        {
+            if ($_POST) {
+                return $_POST;
+            }
+            return array();
         }
     }
 }

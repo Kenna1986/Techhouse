@@ -1,5 +1,26 @@
 <?php
-require_once 'Product.php';
+if (!class_exists('Techhouse')) {
+    class Techhouse
+    {
+        protected static $_templateDirectory;
+
+        public static function getProduct($postId)
+        {
+
+        }
+
+        public static function getTemplate($templateName = '')
+        {
+            if (!self::$_templateDirectory) {
+                self::$_templateDirectory = get_template_directory();
+            }
+            $filePath = self::$_templateDirectory . '/template/' . $templateName;
+            if (file_exists($filePath)) {
+                include $filePath;
+            }
+        }
+    }
+}
 
 function getProduct($args = array())
 {
@@ -238,17 +259,17 @@ add_action('add_meta_boxes', 'addCustomField');
 
 function productOptions()
 {
-    include_once 'product/Options.php';
+    Techhouse::getTemplate('product/Options.php');
 }
 
 function productPrices()
 {
-    include_once 'product/Prices.php';
+    Techhouse::getTemplate('product/Prices.php');
 }
 
 function productRelated()
 {
-    include_once 'product/Related.php';
+    Techhouse::getTemplate('product/Related.php');
 }
 
 function saveProductData($postId)

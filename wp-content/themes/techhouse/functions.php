@@ -15,20 +15,19 @@ spl_autoload_register('themeAutoload');
 
 require_once 'class/Techhouse.php';
 require_once 'class/TaxonomyCustomfields.php';
-require_once 'class/Request.php';
-require_once 'class/Model.php';
-require_once 'class/Cart.php';
-require_once 'class/Quote_Item.php';
+//require_once 'class/Request.php';
+//require_once 'class/Model.php';
+//require_once 'class/Cart.php';
+//require_once 'class/Quote_Item.php';
 
 class TechhouseTheme
 {
     public function __construct()
     {
         add_action('after_setup_theme', array($this, 'themeSetup'));
-        add_action('wp_enqueue_scripts', array($this, 'loadStyles'));
-        add_action('wp_enqueue_scripts', array($this, 'loadScripts'));
+        add_action('wp_print_styles', array($this, 'loadStyles'));
+        add_action('wp_print_scripts', array($this, 'loadScripts'));
         add_action('widgets_init', array($this, 'widgetsInit'));
-        add_action('init', array($this, 'initSessionId'));
     }
 
     public function loadStyles()
@@ -40,6 +39,9 @@ class TechhouseTheme
     public function loadScripts()
     {
         wp_enqueue_script('jquery');
+        if (is_admin()) {
+            wp_deregister_script('autosave');
+        }
     }
 
     public function themeSetup()
@@ -101,17 +103,6 @@ class TechhouseTheme
                 'description' => __('The second widget area on footer', 'techhouse'),
                 'before_widget' => '<li id="%1$s" class="widget-container %2$s">',
                 'after_widget' => '</li>',
-                'before_title' => '<h2 class="widget-title">',
-                'after_title' => '</h2>',
-            )
-        );
-        register_sidebar(
-            array(
-                'name' => __('Languages', 'techhouse'),
-                'id' => 'languages',
-                'description' => __('The second widget for languages', 'techhouse'),
-                'before_widget' => '<div id="%1$s" class="select-1 width-1 %2$s">',
-                'after_widget' => '</div>',
                 'before_title' => '<h2 class="widget-title">',
                 'after_title' => '</h2>',
             )
