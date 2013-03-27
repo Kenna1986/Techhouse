@@ -22,7 +22,7 @@ define('DB_NAME', 'techhouse');
 define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', '123456');
+define('DB_PASSWORD', '');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
@@ -79,6 +79,10 @@ define('WPLANG', '');
  * in their development environments.
  */
 define('WP_DEBUG', false);
+
+// Disable auto revision and auto save
+define('WP_POST_REVISIONS', false);
+define('AUTOSAVE_INTERVAL', 86400);
 define('WP_POST_REVISIONS', false);
 
 /* That's all, stop editing! Happy blogging. */
