@@ -5,10 +5,10 @@
         <div class="product-details-block">
             <div class="product-details">
                 <h2 class="title"><?php the_title() ?></h2>
+
+                <?php get_template_part('product', 'options') ?>
+
                 <div class="choose-block">
-
-                    <?php get_template_part('product', 'options') ?>
-
                     <div class="overview">
                         <div class="item-choose">
                             <h3><?php _e('Overview', 'techhouse') ?></h3>

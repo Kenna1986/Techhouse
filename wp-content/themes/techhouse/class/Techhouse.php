@@ -2,22 +2,9 @@
 if (!class_exists('Techhouse')) {
     class Techhouse
     {
-        protected static $_templateDirectory;
-
         public static function getProduct($postId)
         {
 
-        }
-
-        public static function getTemplate($templateName = '')
-        {
-            if (!self::$_templateDirectory) {
-                self::$_templateDirectory = get_template_directory();
-            }
-            $filePath = self::$_templateDirectory . '/template/' . $templateName;
-            if (file_exists($filePath)) {
-                include $filePath;
-            }
         }
     }
 }
@@ -70,159 +57,6 @@ function formatPrice($price = 0)
     return '<span class="cost">' . $price . ' ' . $currency . '</span>';
 }
 
-function createCustomType() {
-    $labels = array(
-        'name' => __('Product', 'techhouse'),
-        'singular_name' => __('Product', 'techhouse'),
-        'add_new' => __('Add Product', 'techhouse'),
-        'add_new_item' => __('Add New Product', 'techhouse'),
-        'edit_item' => __('Edit Product', 'techhouse'),
-        'new_item' => __('New Product', 'techhouse'),
-        'all_items' => __('All Products', 'techhouse'),
-        'view_item' => __('View Product', 'techhouse'),
-        'search_items' => __('Search Product', 'techhouse'),
-        'not_found' =>  __('No product found', 'techhouse'),
-        'not_found_in_trash' => __('No product found in Trash', 'techhouse'),
-        'parent_item_colon' => '',
-        'menu_name' => __('Products', 'techhouse'),
-    );
-
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'publicly_queryable' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'san-pham'),
-        'capability_type' => 'post',
-        'has_archive' => true,
-        'hierarchical' => false,
-        'menu_position' => null,
-        'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'comments')
-    );
-
-    register_post_type('product', $args);
-
-    $labels = array(
-        'name' => __('Promos', 'techhouse'),
-        'singular_name' => __('Promos', 'techhouse'),
-        'add_new' => __('Add Promos', 'techhouse'),
-        'add_new_item' => __('Add New Promos', 'techhouse'),
-        'edit_item' => __('Edit Promos', 'techhouse'),
-        'new_item' => __('New Promos', 'techhouse'),
-        'all_items' => __('All Promos', 'techhouse'),
-        'view_item' => __('View Promos', 'techhouse'),
-        'search_items' => __('Search promos', 'techhouse'),
-        'not_found' =>  __('No promos found', 'techhouse'),
-        'not_found_in_trash' => __('No promos found in Trash', 'techhouse'),
-        'parent_item_colon' => '',
-        'menu_name' => __('Promos', 'techhouse'),
-    );
-
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'publicly_queryable' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'promos'),
-        'capability_type' => 'post',
-        'has_archive' => true,
-        'hierarchical' => false,
-        'menu_position' => null,
-        'supports' => array('title', 'thumbnail', 'excerpt')
-    );
-
-    register_post_type('promos', $args);
-
-    $labels = array(
-        'name' => __('Accessories', 'techhouse'),
-        'singular_name' => __('Accessories', 'techhouse'),
-        'add_new' => __('Add Accessory', 'techhouse'),
-        'add_new_item' => __('Add New Accessory', 'techhouse'),
-        'edit_item' => __('Edit Accessory', 'techhouse'),
-        'new_item' => __('New Accessory', 'techhouse'),
-        'all_items' => __('All Accessories', 'techhouse'),
-        'view_item' => __('View Accessory', 'techhouse'),
-        'search_items' => __('Search Accessories', 'techhouse'),
-        'not_found' =>  __('No promos accessory', 'techhouse'),
-        'not_found_in_trash' => __('No accessory found in Trash', 'techhouse'),
-        'parent_item_colon' => '',
-        'menu_name' => __('Accessories', 'techhouse'),
-    );
-
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'publicly_queryable' => true,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'phu-kien'),
-        'capability_type' => 'post',
-        'has_archive' => true,
-        'hierarchical' => false,
-        'menu_position' => null,
-        'supports' => array('title', 'editor', 'thumbnail')
-    );
-
-    register_post_type('accessory', $args);
-}
-add_action('init', 'createCustomType');
-
-function createCustomTaxonomy()
-{
-    // Add new taxonomy, make it hierarchical (like categories)
-    $labels = array(
-        'name' => _x('Catalog', 'taxonomy general name'),
-        'singular_name' => _x('Catalog', 'taxonomy singular name'),
-        'search_items' =>  __('Search Catalogs', 'techhouse'),
-        'all_items' => __('All Catalogs', 'techhouse'),
-        'parent_item' => __('Parent Catalog', 'techhouse'),
-        'parent_item_colon' => __('Parent Catalog:', 'techhouse'),
-        'edit_item' => __('Edit Catalog', 'techhouse'),
-        'update_item' => __('Update Catalog', 'techhouse'),
-        'add_new_item' => __('Add New Catalog', 'techhouse'),
-        'new_item_name' => __('New Catalog Name', 'techhouse'),
-        'menu_name' => __('Catalogs', 'techhouse'),
-    );
-
-    register_taxonomy('catalog', array('product'), array(
-        'hierarchical' => true,
-        'labels' => $labels,
-        'show_ui' => true,
-        'show_admin_column' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'danh-muc'),
-    ));
-
-    $labels = array(
-        'name' => _x('Accessories Catalog', 'taxonomy general name'),
-        'singular_name' => _x('Accessories Catalog', 'taxonomy singular name'),
-        'search_items' =>  __('Search Accessories Catalogs', 'techhouse'),
-        'all_items' => __('All Accessories Catalogs', 'techhouse'),
-        'parent_item' => __('Parent Accessories Catalog', 'techhouse'),
-        'parent_item_colon' => __('Parent Accessories Catalog:', 'techhouse'),
-        'edit_item' => __('Edit Accessories Catalog', 'techhouse'),
-        'update_item' => __('Update Accessories Catalog', 'techhouse'),
-        'add_new_item' => __('Add New Accessories Catalog', 'techhouse'),
-        'new_item_name' => __('New Accessories Catalog Name', 'techhouse'),
-        'menu_name' => __('Accessories Catalog', 'techhouse'),
-    );
-
-    register_taxonomy('accessory-catalog', array('accessory'), array(
-        'hierarchical' => true,
-        'labels' => $labels,
-        'show_ui' => true,
-        'show_admin_column' => true,
-        'query_var' => true,
-        'rewrite' => array('slug' => 'danh-muc-phu-kien'),
-    ));
-}
-add_action('init', 'createCustomTaxonomy', 0);
-
 function addCustomField()
 {
     add_meta_box(
@@ -259,17 +93,17 @@ add_action('add_meta_boxes', 'addCustomField');
 
 function productOptions()
 {
-    Techhouse::getTemplate('product/Options.php');
+    locate_template('template/product/Options.php', true);
 }
 
 function productPrices()
 {
-    Techhouse::getTemplate('product/Prices.php');
+    locate_template('template/product/Prices.php', true);
 }
 
 function productRelated()
 {
-    Techhouse::getTemplate('product/Related.php');
+    locate_template('template/product/Related.php', true);
 }
 
 function saveProductData($postId)

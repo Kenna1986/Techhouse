@@ -4,21 +4,14 @@
  */
 function themeAutoload($class)
 {
-    // auto load class define for theme
-    $themeDir = get_template_directory();
-    $filePath = $themeDir . '/class/' . $class . '.php';
-    if (file_exists($filePath)) {
-        require_once $filePath;
-    }
+    //$file = 'class/' . implode('/', explode('_', $class)) . '.php';
+    $file = 'class/' . str_replace('_', '/', $class) . '.php';
+    locate_template($file, true);
 }
 spl_autoload_register('themeAutoload');
 
 require_once 'class/Techhouse.php';
 require_once 'class/TaxonomyCustomfields.php';
-//require_once 'class/Request.php';
-//require_once 'class/Model.php';
-//require_once 'class/Cart.php';
-//require_once 'class/Quote_Item.php';
 
 class TechhouseTheme
 {
