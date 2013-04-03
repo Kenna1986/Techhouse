@@ -3,11 +3,11 @@ abstract class Model_Abstract extends Varien_Object
 {
     protected $_mainTable;
 
-    protected $_defaultAttributes = array();
+    protected $_selectAttributes = array();
 
     protected $_db;
 
-    protected $_filterKey = 'model_';
+    protected $_hook = 'model_';
 
     protected function _init($mainTable, $idFieldName)
     {
@@ -16,34 +16,42 @@ abstract class Model_Abstract extends Varien_Object
         return $this;
     }
 
-    public function getDefaultAttributes()
+    public function getSelectAttributes()
     {
-        return $this->_defaultAttributes;
+        return $this->_selectAttributes;
     }
 
-    public function addAttribute($attribute)
+    public function addAttributeToSelect($attributes)
     {
-        if (is_array($attribute)) {
+        if (is_array($attributes)) {
             $this->_defaultAttributes = array_merge($this->_defaultAttributes, $attribute);
-        } elseif(!in_array($attribute, $this->_defaultAttributes)) {
-            array_push($this->_defaultAttributes, $attribute);
+        } elseif(!in_array($attributes, $this->_selectAttributes)) {
+            array_push($this->_selectAttributes, $attributes);
         }
     }
 
-    public function load($id)
+    public function load($mainId)
     {
-        $select = apply_filters($this->_filterKey . 'load_select', implode(',', $this->getDefaultAttributes()));
-        $join = apply_filters($this->_filterKey . 'load_join', '');
-        $where = apply_filters($this->_filterKey . 'load_where', "($this->_idFieldName = '$id')");
-        $groupby = apply_filters($this->_filterKey . 'load_groupby', '');
-        $orderby = apply_filters($this->_filterKey . 'load_orderby', '');
+        $select = $this->getSelecttAttributes() ? implode(',', $this->getSelecttAttributes()) : '*';
+        $where = "$this->_idFieldName = '$mainId'";
 
-        $sql = "SELECT $select FROM $this->_mainTable
-                $join
-                WHERE $where
-                $groupby";
+        $sql = "SELECT $select
+                    FROM $this->_mainTable
+                    WHERE $where";
         $data = $this->getAdapter()->get_row($sql, ARRAY_A);
-        $this->addData($data)->_addFullNames();
+        $this->addData($data);
+        do_action($this->_hook . 'after_load', $this);
+        return $this;
+    }
+
+    public function save()
+    {
+        if ($this->getId()) {
+            // do action
+        } else {
+            // do action
+        }
+        do_action($this->_hook . 'after_save', $this);
         return $this;
     }
 

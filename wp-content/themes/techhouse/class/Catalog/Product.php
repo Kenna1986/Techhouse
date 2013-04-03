@@ -1,23 +1,39 @@
 <?php
 class Catalog_Product extends Model_Abstract
 {
-    private $_options;
+    private $_variations = array();
+
+    protected $_hook = 'product_';
 
     protected function _construct()
     {
         $this->_init('posts', 'ID');
+        add_action('product_load_after', array($this, '_loadVariations'));
     }
 
-    public function getOptions()
+    public function getVariations()
     {
-        if (!$this->_options) {
-            $prefix = $this->getAdapter()->prefix;
-            $productAttribute = $prefix . 'product_attribute';
-            $attribute = $prefix . 'attribute';
-            $attributeValue = $prefix . 'attribute_value';
-            $sql = "SELECT * FROM `$productAttribute`
-                    LEFT JOIN `$attributeValue` ON `$productAttribute`.`value` = `$attributeValue`.`value_id`
-                    WHERE";
+        return $this->_variations;
+    }
+
+    private function _loadVariations($product)
+    {
+        $productId = $product->getId();
+        $mainTable = $this->getAdapter()->prefix . 'product_variations';
+        $vTable = $this->getAdapter()->prefix . 'variations';
+
+        $sql = "SELECT $mainTable.*, `$vTable`.`name`, `$vTable`.`code`
+                    FROM $mainTable
+                    LEFT JOIN $vTable ON `$vTable`.`variation_id` = `$mainTable`.`variation_id`
+                    WHERE `product_id` = '$productId'";
+        $result = $this->getAdapter()->get_results($sql);
+        if ($result) {
+            foreach ($result as $row) {
+                if (!isset($this->_variations[$row->code])) {
+                    $this->_variations[$row->code]['name'] = $row->name;
+                }
+                $this->_variations[$row->code]['values'][$row->value_id] = $row->value;
+            }
         }
     }
 }
