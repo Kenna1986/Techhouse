@@ -5,7 +5,7 @@
  **/
 $cart = new Checkout_Cart();
 $items = $cart->load(1)->getAllItems();
-print_r($items[0]->getOptions());
+print_r($items);
 exit;
 ?><!DOCTYPE html>
 <!--[if IE 7]>

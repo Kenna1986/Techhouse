@@ -26,4 +26,26 @@ class Checkout_Cart extends Model_Abstract
         }
         return $this->_items;
     }
+
+    public function addItem($productId)
+    {
+    	$cart = Mage::registry('cart');
+    	$variationData = Request::getParam('variation');
+
+		$product = new Catalog_Product();
+		$product->load($productId);
+
+		$options = array();
+		$variation = new Catalog_Product_Variation();
+		$variationValue = new Catalog_Product_Variation_Value();
+		foreach ($variationData as $key => $value) {
+			$options[$key] = array(
+				'name' => $variation->loadByCode($key)->getName(),
+				'value' => array(
+					'value_id' => $value,
+					'label' => $variationValue->load($value)->getValue()
+				)
+			);
+		}
+    }
 }

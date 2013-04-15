@@ -39,7 +39,7 @@ abstract class Model_Abstract extends Varien_Object
                     FROM $this->_mainTable
                     WHERE $where";
         $data = $this->getAdapter()->get_row($sql, ARRAY_A);
-        $this->addData($data);
+        $this->setData($data);
         do_action($this->_hook . 'after_load', $this);
         return $this;
     }
