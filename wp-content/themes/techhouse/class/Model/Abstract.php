@@ -5,7 +5,7 @@ abstract class Model_Abstract extends Varien_Object
 
     protected $_selectAttributes = array();
 
-    protected $_db;
+    protected static $_db;
 
     protected $_hook = 'model_';
 
@@ -57,10 +57,15 @@ abstract class Model_Abstract extends Varien_Object
 
     public function getAdapter()
     {
-        if (!$this->_db) {
+        if (!self::$_db) {
             global $wpdb;
-            $this->_db = $wpdb;
+            self::$_db = $wpdb;
         }
-        return $this->_db;
+        return self::$_db;
+    }
+
+    public function getMainTable()
+    {
+        return $this->_mainTable;
     }
 }

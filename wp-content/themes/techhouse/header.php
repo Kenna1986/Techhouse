@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+<?php
+/*
+ * Header of template
+ *
+ **/
+$cart = new Checkout_Cart();
+$items = $cart->load(1)->getAllItems();
+print_r($items[0]->getOptions());
+exit;
+?><!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" <?php language_attributes() ?>>
 <![endif]-->
